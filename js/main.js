@@ -14,10 +14,25 @@ var vm = new Vue({
 
     // this data would also come from the database, but we'll just mock it up for now
     videodata: [
-      { name: "Star Wars The Force Awakens", thumb: "forceawakens.jpg", vidsource: "forceawakens.mp4", description: "yet another star wars movie" },
-      { name: "Stranger Things", thumb: "strangerthings.jpg", vidsource: "strangerthings.mp4", description: "don't get lost in the upside down" },
-      { name: "Marvel's The Avengers", thumb: "avengers.jpg", vidsource: "avengers.mp4", description: "will they make black widow action figures this time?" }
+      { name: "Star Wars The Force Awakens", 
+      thumb: "forceawakens.jpg", 
+      vidsource: "forceawakens.mp4", 
+      description: "yet another star wars movie" },
+
+      { name: "Stranger Things", 
+      thumb: "strangerthings.jpg", 
+      vidsource: "strangerthings.mp4", 
+      description: "don't get lost in the upside down" },
+
+      { name: "Marvel's The Avengers", 
+      thumb: "avengers.jpg", 
+      vidsource: "avengers.mp4", 
+      description: "will they make black widow action figures this time?" }
     ],
+
+    videotitle: "video title goes here",
+    vidsource: "",
+    videodescription: "",
 
     showDetails: false
   },
@@ -34,8 +49,18 @@ var vm = new Vue({
       //this expression evacuates to true or false - if its true set the value equal to the left of the colon. If false, set the value equal to the right.
       this.user.isLoggedIn = (this.user.isLoggedIn) ? false : true; //this is a ternary statemnet -> shorthand for if/else
     },
-    userAvatar() {
+    userAvatar() { //for avatar if switched
       this.user.avatar = (this.user.avatar) ? false : true; //this is a ternary statemnet -> shorthand for if/else
+    },
+    showMovieDetails({name, vidsource, description}) {
+      //console.log('show these details: ', movie); //when posters are clicked...
+      this.videotitle = name;
+      this.vidsource = vidsource;
+      this.videodescription = description;
+
+      //make the movie details show up
+      showDetails = true;
     }
+
   }
 });
