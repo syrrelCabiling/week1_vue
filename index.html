@@ -64,11 +64,13 @@
     </p>
 
     <section class="hidden-movies" :class="{ 'show-movie' : showMovieDetails }"> <!--hidden movies-->
-      <h3 class="movie-title">{{ videotitle }}</h3> <!--see main js-->
+      <!-- <h3 class="movie-title">{{ videotitle }}</h3> see main js
       <video :src="'video/' + vidsource" controls autoplay></video>
       <div class="movie-details">
         <p>{{ videodescription }}</p>
-      </div>
+      </div> LOOK AT TEMPLATE IN MAIN.JS-->
+
+      <player v-bind:movie="movie" /> 
     </section>
 
     <div class="up-arrow"><span>^</span></div>

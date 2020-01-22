@@ -1,4 +1,16 @@
 // todo => use a key to track the current video, or just pass the video in as a ref to the function and grab its source
+Vue.component('player', {
+  props: ['movie'], //container where we can dump infos 
+  template: `
+    <div>  
+        <h3 class="movie-title">{{ movie.videotitle }}</h3>
+        <video :src="'video/' + movie.vidsource" controls autoplay></video>
+        <div class="movie-details">
+            <p>{{ movie.videodescription }}</p> 
+        </div>
+    </div>
+  `
+})
 
 var vm = new Vue({
   el: "#app", //d
@@ -33,12 +45,14 @@ var vm = new Vue({
       description: "will they make black widow action figures this time?" }
     ],
 
+    movie: {
     videotitle: "video title goes here",
     vidsource: "",
     videodescription: "",
+    },
 
     showDetails: false
-  },
+},
 
   created: function() {
     // run a fetch call and get the user data
@@ -78,9 +92,9 @@ var vm = new Vue({
 
     showMovieDetails({name, vidsource, description}) {
       //console.log('show these details: ', movie); //when posters are clicked...
-      this.videotitle = name;
-      this.vidsource = vidsource;
-      this.videodescription = description;
+      this.movie.videotitle = name;
+      this.movie.vidsource = vidsource;
+      this.movie.videodescription = description;
 
       //make the movie details show up
       showDetails = true;
