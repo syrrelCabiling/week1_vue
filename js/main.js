@@ -1,3 +1,5 @@
+import usersComponent from "./components/usersComponent.js";
+
 // todo => use a key to track the current video, or just pass the video in as a ref to the function and grab its source
 Vue.component('player', {
   props: ['movie'], //container where we can dump infos 
@@ -12,8 +14,17 @@ Vue.component('player', {
   `
 })
 
+const router = new VueRouter({
+  routes: [
+    { path: "/", name: "home", component: usersComponent }
+  ]
+}) 
+
+
 var vm = new Vue({
-  el: "#app", //d
+  el: "#app", 
+
+  router,
 
   data: {
 
@@ -57,7 +68,7 @@ var vm = new Vue({
   created: function() {
     // run a fetch call and get the user data
     console.log('created lifecycle hook fired here, ho get user data');
-    this.getUserData();
+   // this.getUserData();
   },
 
   methods: { //functionality that you can run in vue
@@ -101,4 +112,5 @@ var vm = new Vue({
     }
 
   }
+ 
 });
